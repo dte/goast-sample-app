@@ -4,12 +4,14 @@ function DisplayUser() {
   const [username, setUsername] = useState({first: 'John', last: 'Smith'});
 
   const handleClearName = () => {
-    setUsername(null);
+    // Set username to an empty object instead of null to prevent TypeError
+    setUsername({});
   };
 
   return (
     <>
-      {username ? (
+      {/* Check if username has properties first and last to prevent TypeError */}
+      {username && username.first && username.last ? (
         <>
           <div>Firstname: {username.first}</div>
           <div>Lastname: {username.last}</div>
